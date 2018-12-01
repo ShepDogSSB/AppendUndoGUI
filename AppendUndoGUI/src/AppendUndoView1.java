@@ -195,7 +195,7 @@ public final class AppendUndoView1 extends JFrame implements AppendUndoView {
 
     @Override
     public void updateUndoAllowed(boolean allowed) {
-        if (allowed == true) {
+        if (allowed) {
             this.undoButton.setEnabled(true);
         } else {
             this.undoButton.setEnabled(false);

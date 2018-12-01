@@ -1,3 +1,5 @@
+import components.stack.Stack;
+
 /**
  * Model interface.
  *
@@ -42,25 +44,13 @@ public interface AppendUndoModel {
     void setInput(String input);
 
     /**
-     * Reports this.output.
-     *
-     * @return this.output
-     * @aliases reference returned by {@code output}
-     * @ensures <pre>
-     * {@code output = this.output}
-     * </pre>
-     */
-    String output();
-
-    /**
      * Sets this.output to argument.
      *
-     * @param output
-     *            new this.output value
+     * 
      * @ensures <pre>
      * {@code this.output = output}
      * </pre>
      */
-    void setOutput(String output);
+    Stack<String> output();
 
 }

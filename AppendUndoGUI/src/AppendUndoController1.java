@@ -30,10 +30,16 @@ public final class AppendUndoController1 implements AppendUndoController {
          * Get model info
          */
         String input = model.input();
-        String output = model.output();
+        String output = model.output().top();
         /*
          * Update view to reflect changes in model
          */
+
+        if (model.output().length() > 1) {
+            view.updateUndoAllowed(true);
+        } else {
+            view.updateUndoAllowed(false);
+        }
         view.updateInputDisplay(input);
         view.updateOutputDisplay(output);
     }
@@ -64,7 +70,8 @@ public final class AppendUndoController1 implements AppendUndoController {
          * Update model in response to this event
          */
         this.model.setInput("");
-        this.model.setOutput("");
+        this.model.output().clear();
+        this.model.output().push("");
         /*
          * Update view to reflect changes in model
          */
@@ -73,16 +80,16 @@ public final class AppendUndoController1 implements AppendUndoController {
 
     @Override
     public void processAppendEvent(String input) {
+        String top = this.model.output().top();
+        this.model.output().push(top + input);
         this.model.setInput("");
-        this.model.setOutput(input);
-        this.view.updateUndoAllowed(true);
         updateViewToMatchModel(this.model, this.view);
     }
 
     @Override
     public void processUndoEvent() {
-        this.model.setInput(this.model.input());
-        this.model.setOutput("");
+        this.model.output().pop();
+
         updateViewToMatchModel(this.model, this.view);
     }
 

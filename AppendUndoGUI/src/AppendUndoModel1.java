@@ -37,13 +37,8 @@ public final class AppendUndoModel1 implements AppendUndoModel {
     }
 
     @Override
-    public void setOutput(String output) {
-        this.output.push(output);
-    }
-
-    @Override
-    public String output() {
-        return this.output.toString();
+    public Stack<String> output() {
+        return this.output;
     }
 
 }
